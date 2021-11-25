@@ -1,0 +1,20 @@
+{
+  "name": "Ts_Jest",
+  "version": "1.0.0",
+  "description": "TypeScriptによるJestのテスト",
+  "main": "dist/index.js",
+  "repository": "https://github.com/matsushinDB11/Ts_Jest.git",
+  "author": "Shintaro Matsumoto",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "27.0",
+    "@types/node": "^16.11.10",
+    "jest": "27.0",
+    "ts-jest": "27.0",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.2"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
