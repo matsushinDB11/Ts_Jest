@@ -33,7 +33,6 @@ const formulaParser = (input: string): parsedOutput => {
         }
     }
     output.numbers.push(Number(numberCash));
-    console.log(output)
     return output
 }
 
