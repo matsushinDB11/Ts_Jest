@@ -5,7 +5,7 @@ type parsedOutput = {
 
 const formulaParser = (input: string): parsedOutput => {
     const inputArray = input.split("")
-    const symbol = /[+\-*\/]/;
+    const symbol = /[+\-*\/()]/;
     const number = /[0-9]/
     const output: parsedOutput = {
         numbers: [],
