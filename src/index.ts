@@ -1,4 +1,4 @@
-type parsedOutput = {
+export type parsedOutput = {
     numbers: number[]
     symbols: string[]
 }
@@ -19,7 +19,10 @@ const formulaParser = (input: string): parsedOutput => {
                 if (beginningLine_OR_afterSymbol) throw new RangeError("入力値が無効");
                 output.symbols.push(str);
                 beginningLine_OR_afterSymbol = true;
-                if (numberCash.length > 0) output.numbers.push(Number(numberCash));
+                if (numberCash.length > 0){
+                    output.numbers.push(Number(numberCash));
+                    numberCash = "";
+                }
                 break;
             case number.test(str):
                 numberCash += str;
@@ -29,5 +32,9 @@ const formulaParser = (input: string): parsedOutput => {
                 throw new RangeError("入力値が無効");
         }
     }
+    output.numbers.push(Number(numberCash));
+    console.log(output)
     return output
 }
+
+export default formulaParser;
