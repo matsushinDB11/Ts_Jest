@@ -16,6 +16,22 @@ test('minus test', ()=> {
     expect<parsedOutput>(formulaParser('2-3')).toStrictEqual(data);
 })
 
+test('multiplication test', ()=> {
+    const data: parsedOutput = {
+        numbers: [2, 3],
+        symbols: ['*']
+    }
+    expect<parsedOutput>(formulaParser('2*3')).toStrictEqual(data);
+})
+
+test('division test', ()=> {
+    const data: parsedOutput = {
+        numbers: [2, 3],
+        symbols: ['/']
+    }
+    expect<parsedOutput>(formulaParser('2/3')).toStrictEqual(data);
+})
+
 test('two digit', ()=> {
     const data: parsedOutput = {
         numbers: [23, 98],
