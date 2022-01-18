@@ -8,6 +8,10 @@ const formulaParser = (input: string): parsedOutput => {
     const symbol = /[+\-*\/]/;
     const parentheses = /[()]/
     const number = /[0-9]/
+
+    // 末尾が記号
+    if (inputArray.slice(-1)[0].match(symbol)) throw RangeError("Symbols at the end");
+
     const output: parsedOutput = {
         numbers: [],
         symbols: []
