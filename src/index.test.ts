@@ -5,7 +5,7 @@ test('plus test', ()=> {
         numbers: [2, 3],
         symbols: ['+']
     }
-    expect<parsedOutput>(formulaParser('2+3')).toStrictEqual(data);
+    expect<parsedOutput>(formulaParser('2+3')).toEqual(data);
 })
 
 test('minus test', ()=> {
@@ -13,7 +13,23 @@ test('minus test', ()=> {
         numbers: [2, 3],
         symbols: ['-']
     }
-    expect<parsedOutput>(formulaParser('2-3')).toStrictEqual(data);
+    expect<parsedOutput>(formulaParser('2-3')).toEqual(data);
+})
+
+test('multiplication test', ()=> {
+    const data: parsedOutput = {
+        numbers: [2, 3],
+        symbols: ['*']
+    }
+    expect<parsedOutput>(formulaParser('2*3')).toEqual(data);
+})
+
+test('division test', ()=> {
+    const data: parsedOutput = {
+        numbers: [2, 3],
+        symbols: ['/']
+    }
+    expect<parsedOutput>(formulaParser('2/3')).toEqual(data);
 })
 
 test('two digit', ()=> {
@@ -21,7 +37,7 @@ test('two digit', ()=> {
         numbers: [23, 98],
         symbols: ['+']
     }
-    expect<parsedOutput>(formulaParser('23+98')).toStrictEqual(data);
+    expect<parsedOutput>(formulaParser('23+98')).toEqual(data);
 })
 
 test('parentheses', () => {
@@ -29,5 +45,21 @@ test('parentheses', () => {
         numbers: [3, 2, 1],
         symbols: ['*', '(', '+', ')']
     }
-    expect<parsedOutput>(formulaParser('3*(2+1)')).toStrictEqual(data);
+    expect<parsedOutput>(formulaParser('3*(2+1)')).toEqual(data);
+})
+
+test('Error for trailing symbol', () => {
+    expect(() => formulaParser('3+2+')).toThrowError(RangeError);
+})
+
+test('Error for negative numbers', () => {
+    expect(() => formulaParser('-3+2')).toThrowError(RangeError);
+})
+
+test('Error for consecutive symbols', () => {
+    expect(() => formulaParser('3-+2')).toThrowError(RangeError);
+})
+
+test('Error for not covered symbols', () => {
+    expect(() => formulaParser('3?2')).toThrowError(RangeError);
 })
