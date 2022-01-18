@@ -5,7 +5,8 @@ export type parsedOutput = {
 
 const formulaParser = (input: string): parsedOutput => {
     const inputArray = input.split("")
-    const symbol = /[+\-*\/()]/;
+    const symbol = /[+\-*\/]/;
+    const parentheses = /[()]/
     const number = /[0-9]/
     const output: parsedOutput = {
         numbers: [],
@@ -24,6 +25,14 @@ const formulaParser = (input: string): parsedOutput => {
                     numberCash = "";
                 }
                 break;
+            case parentheses.test(str):
+                output.symbols.push(str);
+                beginningLine_OR_afterSymbol = false;
+                if (numberCash.length > 0){
+                    output.numbers.push(Number(numberCash));
+                    numberCash = "";
+                }
+                break;
             case number.test(str):
                 numberCash += str;
                 beginningLine_OR_afterSymbol = false;
@@ -32,7 +41,10 @@ const formulaParser = (input: string): parsedOutput => {
                 throw new RangeError("入力値が無効");
         }
     }
-    output.numbers.push(Number(numberCash));
+    if (numberCash.length > 0){
+        output.numbers.push(Number(numberCash));
+        numberCash = "";
+    }
     return output
 }
 
