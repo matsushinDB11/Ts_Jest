@@ -1,4 +1,4 @@
-export type parsedOutput = {
+type parsedOutput = {
     numbers: number[]
     symbols: string[]
 }
@@ -45,10 +45,9 @@ const formulaParser = (input: string): parsedOutput => {
                 throw new RangeError("Invalid input");
         }
     }
-    if (numberCash.length > 0){
-        output.numbers.push(Number(numberCash));
-    }
-    return output
+    if (numberCash.length > 0) output.numbers.push(Number(numberCash));
+    return output;
 }
 
+export type { parsedOutput };
 export default formulaParser;
