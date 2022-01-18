@@ -21,7 +21,7 @@ const formulaParser = (input: string): parsedOutput => {
     for (const str of inputArray) {
         switch (true) {
             case symbol.test(str):
-                if (beginningLine_OR_afterSymbol) throw new RangeError("入力値が無効");
+                if (beginningLine_OR_afterSymbol) throw new RangeError("Negative numbers or consecutive symbols");
                 output.symbols.push(str);
                 beginningLine_OR_afterSymbol = true;
                 if (numberCash.length > 0){
@@ -42,12 +42,11 @@ const formulaParser = (input: string): parsedOutput => {
                 beginningLine_OR_afterSymbol = false;
                 break;
             default:
-                throw new RangeError("入力値が無効");
+                throw new RangeError("Invalid input");
         }
     }
     if (numberCash.length > 0){
         output.numbers.push(Number(numberCash));
-        numberCash = "";
     }
     return output
 }
