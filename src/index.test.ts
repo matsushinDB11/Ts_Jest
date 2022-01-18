@@ -47,3 +47,19 @@ test('parentheses', () => {
     }
     expect<parsedOutput>(formulaParser('3*(2+1)')).toEqual(data);
 })
+
+test('Error for trailing symbol', () => {
+    expect(() => formulaParser('3+2+')).toThrowError(RangeError);
+})
+
+test('Error for negative numbers', () => {
+    expect(() => formulaParser('-3+2')).toThrowError(RangeError);
+})
+
+test('Error for consecutive symbols', () => {
+    expect(() => formulaParser('3-+2')).toThrowError(RangeError);
+})
+
+test('Error for not covered symbols', () => {
+    expect(() => formulaParser('3?2')).toThrowError(RangeError);
+})
